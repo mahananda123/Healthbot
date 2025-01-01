@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare ChatBot Result</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .result-container {
+            text-align: left;
+            font-size: 1.1em;
+            line-height: 1.6em;
+        }
+
+        .result-container p {
+            margin: 10px 0;
+        }
+
+        .result-container strong {
+            color: #4CAF50;
+        }
+
+        .precautions-title {
+            margin-top: 20px;
+            color: #4CAF50;
+            font-size: 1.4em;
+        }
+
+        .precautions-list {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 10px;
+        }
+
+        .precaution-item {
+            margin: 5px 0;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">HealthCare ChatBot Result</h1>
+        <div class="result-container">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Age:</strong> {{ age }}</p>
+            <p><strong>Predicted Disease:</strong> {{ disease }}</p>
+            <p><strong>Description:</strong> {{ description }}</p>
+            <p><strong>Consult Doctor:</strong> {{ doctor_name }}</p>
+            <p><strong>Visit:</strong> <a href="{{ doctor_link }}" target="_blank">{{ doctor_link }}</a></p>
+        </div>
+        
+        {% if precautions %}
+        <h3 class="precautions-title">Precautions:</h3>
+        <ul class="precautions-list">
+            {% for precaution in precautions %}
+                <li class="precaution-item">{{ precaution }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <div class="button-container">
+            <form action="/view-data" method="get" style="display:inline;">
+                <button type="submit" class="button">View Database Records</button>
+            </form>
+            <a href="/" class="button">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

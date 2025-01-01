@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare ChatBot Questions</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Questions for {{ disease_or_symptom }}</h1>
+        <form action="/predict" method="post" class="form">
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="age" value="{{ age }}">
+            {% for symptom in symptoms %}
+                <label class="checkbox-label">
+                    <input  type="checkbox" name="symptoms" value="{{ symptom }}" class="checkbox" >
+                    {{ symptom }}
+                </label><br>
+            {% endfor %}
+            <br>
+            <script>
+                document.querySelector('.form').addEventListener('submit', function(event) {
+                    const checkboxes = document.querySelectorAll('input[name="symptoms"]:checked');
+                    if (checkboxes.length === 0) {
+                        alert('Please select at least one symptom.');
+                        event.preventDefault();
+                    }
+                });
+            </script>
+            
+            <a href="/" class="button">Back</a>
+            <input type="submit" value="Submit" class="button">
+        </form>
+    </div>
+</body>
+</html>
